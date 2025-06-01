@@ -32,20 +32,44 @@
 
 
 
-// s3
+# // s3
 
-module "s3_bucket" {
-  source = "./modules/s3"
-  s3_bucket_name = var.s3_bucket_name
-  s3_block_public_acls = var.s3_block_public_acls
-  s3_block_public_policy = var.s3_block_public_policy
-  s3_ignore_public_acls = var.s3_ignore_public_acls
-  s3_object_content_type = var.s3_object_content_type
-  s3_object_key = var.s3_object_key
-  s3_object_source = var.s3_object_source
-  s3_object_suffix = var.s3_object_suffix
-  s3_restrict_public_buckets = var.s3_restrict_public_buckets
+# module "s3_bucket" {
+#   source = "./modules/s3"
+#   s3_bucket_name = var.s3_bucket_name
+#   s3_block_public_acls = var.s3_block_public_acls
+#   s3_block_public_policy = var.s3_block_public_policy
+#   s3_ignore_public_acls = var.s3_ignore_public_acls
+#   s3_object_content_type = var.s3_object_content_type
+#   s3_object_key = var.s3_object_key
+#   s3_object_source = var.s3_object_source
+#   s3_object_suffix = var.s3_object_suffix
+#   s3_restrict_public_buckets = var.s3_restrict_public_buckets
 
+# }
+
+
+/// 
+
+
+module "aws_rds" {
+  source = "./modules/rds"
+  instance_class = var.instance_class
+  engine_version = var.engine_version
+  db_name = var.db_name
+  database_engine = var.database_engine
+  rds_password = var.rds_password
+  rds_username = var.rds_username
+  allocated_storage_rds = var.allocated_storage_rds
+  skip_final_snapshot = var.skip_final_snapshot
+  publicly_accessible_or_not = var.publicly_accessible_or_not
+  parameter_group_name = var.parameter_group_name
+  
 }
 
 
+
+module "eksCluster" {
+  source = "./modules/eks"
+  clusterName = var.clusterName
+}
